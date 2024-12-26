@@ -27,6 +27,8 @@ void main() {
   );
 }
 
+void sqfliteFfiInit() {}
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
