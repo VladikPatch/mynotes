@@ -113,6 +113,7 @@ class MockAuthProvider implements AuthProvider {
     if (email == 'notpatchstudiocompanyv@gmail.com') throw InvalidCredentialAuthException();
     if (password == 'notVa684817') throw WrongPasswordAuthException();
     const user = AuthUser(
+      id: 'my_id',
       email: 'notpatchstudiocompanyv@gmail.com',
       isEmailVerified: false,
     );
@@ -134,6 +135,7 @@ class MockAuthProvider implements AuthProvider {
     final user = _user;
     if (user == null) throw InvalidCredentialAuthException();
     const newUser = AuthUser(
+      id: 'my_id',
       email: 'notpatchstudiocompanyv@gmail.com',
       isEmailVerified: true,
     );
