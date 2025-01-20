@@ -18,45 +18,31 @@ class NotesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int notesLength = notes.length;
-    if (notesLength != 0) {
-      return ListView.builder(
-        itemCount: notesLength,
-        itemBuilder: (context, index) {
-          final note = notes.elementAt(index);
-          return ListTile(
-            title: Text(
-              note.text,
-              maxLines: 1,
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
-            ),
-            onTap: () {
-              onTap(note);
-            },
-            trailing: IconButton(
-              onPressed: () async {
-                final shouldDelete = await showDeleteDialog(context);
-                if (shouldDelete) {
-                  onDeleteNote(note);
-                }
-              },
-              icon: const Icon(Icons.delete),
-            ),
-          );
-        },
-      );
-    } else {
-      return const Align(
-        alignment: Alignment.topCenter,
-        child: Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: Text(
-            'You haven\'t created any notes yet',
-            style: TextStyle(fontSize: 16),
+    return ListView.builder(
+      itemCount: notes.length,
+      itemBuilder: (context, index) {
+        final note = notes.elementAt(index);
+        return ListTile(
+          title: Text(
+            note.text,
+            maxLines: 1,
+            softWrap: true,
+            overflow: TextOverflow.ellipsis,
           ),
-        ),
-      );
-    }
+          onTap: () {
+            onTap(note);
+          },
+          trailing: IconButton(
+            onPressed: () async {
+              final shouldDelete = await showDeleteDialog(context);
+              if (shouldDelete) {
+                onDeleteNote(note);
+              }
+            },
+            icon: const Icon(Icons.delete),
+          ),
+        );
+      },
+    );
   }
 }
