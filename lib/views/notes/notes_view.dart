@@ -7,9 +7,21 @@ import 'package:mynotes/services/auth/bloc/auth_bloc.dart';
 import 'package:mynotes/services/auth/bloc/auth_event.dart';
 import 'package:mynotes/services/cloud/cloud_note.dart';
 import 'package:mynotes/services/cloud/firebase_cloud_storage.dart';
+import 'package:mynotes/services/l10n/localization_provider.dart';
 import 'package:mynotes/utilities/dialogs/logout_dialog.dart';
 import 'package:mynotes/views/notes/notes_list_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
+
+extension AppLanguageExtension on AppLanguage {
+  String get name {
+    switch (this) {
+      case AppLanguage.en:
+        return 'English';
+      case AppLanguage.sv:
+        return 'Svenska';
+    }
+  }
+}
 
 extension Count<T extends Iterable> on Stream<T> {
   Stream<int> get getLength => map((event) => event.length);
@@ -48,10 +60,30 @@ class _NotesView extends State<NotesView> {
             }),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
-              },
-              icon: const Icon(Icons.add)),
+            onPressed: () {
+              Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
+            },
+            icon: const Icon(Icons.add),
+          ),
+          PopupMenuButton<AppLanguage>(
+            icon: const Icon(Icons.language),
+            onSelected: (value) {
+              final locale = value == AppLanguage.en ? const Locale('en') : const Locale('sv');
+              context.read<LocalizationProvider>().setLocale(locale);
+            },
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem<AppLanguage>(
+                  value: AppLanguage.en,
+                  child: Text(context.loc.english_language_button),
+                ),
+                PopupMenuItem<AppLanguage>(
+                  value: AppLanguage.sv,
+                  child: Text(context.loc.swedish_language_button),
+                ),
+              ];
+            },
+          ),
           PopupMenuButton<MenuAction>(
             onSelected: (value) async {
               switch (value) {

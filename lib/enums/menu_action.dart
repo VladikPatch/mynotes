@@ -1,1 +1,8 @@
-enum MenuAction { logout }
+enum AppLanguage {
+  en,
+  sv,
+}
+
+enum MenuAction {
+  logout,
+}

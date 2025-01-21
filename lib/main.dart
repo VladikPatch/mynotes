@@ -13,25 +13,33 @@ import 'package:mynotes/views/notes/notes_view.dart';
 import 'package:mynotes/views/register_view.dart';
 import 'package:mynotes/views/verify_email_view.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mynotes/services/l10n/localization_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
-    MaterialApp(
-      title: 'Flutter Demo',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: BlocProvider<AuthBloc>(
-        create: (context) => AuthBloc(FirebaseAuthProvider()),
-        child: const HomePage(),
-      ),
-      routes: {
-        createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
-      },
+    ChangeNotifierProvider(
+      create: (_) => LocalizationProvider(),
+      child: Consumer<LocalizationProvider>(builder: (context, localizationProvider, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          locale: localizationProvider.locale,
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: BlocProvider<AuthBloc>(
+            create: (context) => AuthBloc(FirebaseAuthProvider()),
+            child: const HomePage(),
+          ),
+          routes: {
+            createOrUpdateNoteRoute: (context) => const CreateUpdateNoteView(),
+          },
+        );
+      }),
     ),
   );
 }

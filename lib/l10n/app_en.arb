@@ -1,4 +1,6 @@
-{
+{   
+    "english_language_button": "English",
+    "swedish_language_button": "Swedish",
     "logout_button": "Log out",
     "note": "Note",
     "cancel": "Cancel",
