@@ -1,16 +1,39 @@
-# mynotes
+# MyNotes App
 
-A new Flutter project.
+MyNotes is the first app I created while following a 37-hour YouTube course by Vandad Nahavandipoor [freeCodeCamp.org](https://www.youtube.com/watch?v=VPvVD8t02U8). It's a simple note-taking app built with Flutter that allows users to register, log in, create, edit, and view personal notes.
 
-## Getting Started
+## Built With
 
-This project is a starting point for a Flutter application.
+- **Flutter**
+- **Dart**
+- **Google Firebase**
+- **flutter_bloc** (state management)
+- **firebase_core**, and other common libraries
 
-A few resources to get you started if this is your first Flutter project:
+## Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- User authentication (register, login, logout)
+- Create, view, edit, and delete notes
+- Notes saved per user via Firebase
+- Clean UI and responsive layout
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Firebase Configuration
+
+To run the app locally, you'll need your own Firebase setup.
+
+Create your own Firebase project and add the following files (not included in this repo for security reasons):
+
+- `android/app/google-services.json`
+- `ios/GoogleService-Info.plist`
+
+## What I Learned
+
+This project helped me understand:
+- The basics of Flutter and Dart
+- How Firebase integrates with Flutter
+- State management using BLoC
+- Structuring a real-world Flutter project
+
+## License
+
+This project is for educational purposes. Based on a tutorial by Vandad Nahavandipoor [freeCodeCamp.org].
